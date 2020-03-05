@@ -49,7 +49,9 @@ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno configure.status.lineno
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_HEADER = config.h
-CONFIG_CLEAN_FILES =
+# JTC: Modified so 'make distclean' will remove these generated files
+#CONFIG_CLEAN_FILES =
+CONFIG_CLEAN_FILES = utsrelease.h src/utsrelease.h
 SOURCES =
 DIST_SOURCES =
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)

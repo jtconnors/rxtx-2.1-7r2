@@ -21446,11 +21446,22 @@ EOF
 }
 check_kernel_headers()
 {
+#
+# JTC: For recent versions of Linux, UTS_RELEASE is found in kernel module
+# include files, not as previously stated in <linux/version.h>.  Sometimes
+# kernel modules can be hard to get (e.g. Raspian)  As a workaround, create a
+# local "utsrelease.h" that source files can reference via `uname -r`
+# command
+#
+	echo "#define UTS_RELEASE \""`uname -r`"\"" > utsrelease.h
+	cp utsrelease.h src/utsrelease.h
+
 	cat > conftest.c << EOF
 
 #include <linux/version.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "utsrelease.h"
 
 int main(int argc, char *argv)
 {
