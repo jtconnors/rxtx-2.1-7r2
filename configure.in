@@ -368,11 +368,24 @@ EOF
 }
 check_kernel_headers()
 {
+check_kernel_headers()
+{
+#
+# JTC: For recent versions of Linux, UTS_RELEASE is found in kernel module
+# include files, not as previously stated in <linux/version.h>.  Sometimes
+# kernel modules can be hard to get (e.g. Raspian)  As a workaround, create a
+# local "utsrelease.h" that source files can reference via `uname -r`
+# command
+#
+        echo "#define UTS_RELEASE \""`uname -r`"\"" > utsrelease.h
+        cp utsrelease.h src/utsrelease.h
+
 	cat > conftest.c << EOF
 
 #include <linux/version.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <utsrelease.h>
 
 int main(int argc, char *argv[])
 {
@@ -424,7 +437,7 @@ if test "$CC" = "gcc" || test "$CC"="egcs"; then
 	Tran*)
 		find_java_native_include jni.h
 		JAVAH="\$(JPATH)/bin/kaffeh -classpath \$(CLASSPATH) -d \$(DEST) -jni"
-		JAVAC="\$(JPATH)/bin/javac -classpath \$(CLASSPATH) -d \$(TOP)/ -O -source 1.3 -target 1.3"
+		JAVAC="\$(JPATH)/bin/javac -classpath \$(CLASSPATH) -d \$(TOP)/ -O -source 1.8 -target 1.8"
 		JAR="\$(JPATH)/bin/jar"
 		JAVADOC="\$(JPATH)/bin/javadoc -classpath \$(CLASSPATH)"
 		CFLAGS=$CFLAGS" -D_BSD_SOURCE"
@@ -436,7 +449,7 @@ if test "$CC" = "gcc" || test "$CC"="egcs"; then
 	*)
 		find_java_native_include jni_md.h
 		JAVAH="\$(JPATH)/bin/javah -classpath \$(CLASSPATH) -d \$(DEST) -jni"
-		JAVAC="\$(JPATH)/bin/javac -classpath \$(CLASSPATH) -d \$(TOP)/ -O -source 1.3 -target 1.3"
+		JAVAC="\$(JPATH)/bin/javac -classpath \$(CLASSPATH) -d \$(TOP)/ -O -source 1.8 -target 1.8"
 		JAR="\$(JPATH)/bin/jar"
 		JAVADOC="\$(JPATH)/bin/javadoc"
 		CFLAGS=$CFLAGS" -D_BSD_SOURCE"
