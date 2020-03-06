@@ -62,7 +62,9 @@
 #	include <linux/version.h>
 #endif
 #ifndef __APPLE__  /* dima */
-#include <sys/io.h>
+#    ifdef HAVE_SYS_IO_H
+#        include <sys/io.h>
+#    endif
 #endif /* dima */
 
 extern int errno;
