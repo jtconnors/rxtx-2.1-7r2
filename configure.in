@@ -439,7 +439,7 @@ if test "$CC" = "gcc" || test "$CC"="egcs"; then
 		JAVAC="\$(JPATH)/bin/javac -classpath \$(CLASSPATH) -d \$(TOP)/ -O -source 1.8 -target 1.8"
 		JAR="\$(JPATH)/bin/jar"
 		JAVADOC="\$(JPATH)/bin/javadoc -classpath \$(CLASSPATH)"
-		CFLAGS=$CFLAGS" -D_BSD_SOURCE"
+		CFLAGS=$CFLAGS" -D_BSD_SOURCE -D_DEFAULT_SOURCE"
 		JAVAINCLUDE=""
 		JAVAH_FIX="if test ! -d \$(target_triplet);then  mkdir \$(target_triplet);fi;"
 		JHOME=$JPATH"/share/kaffe/"
@@ -451,7 +451,7 @@ if test "$CC" = "gcc" || test "$CC"="egcs"; then
 		JAVAC="\$(JPATH)/bin/javac -classpath \$(CLASSPATH) -d \$(TOP)/ -O -source 1.8 -target 1.8"
 		JAR="\$(JPATH)/bin/jar"
 		JAVADOC="\$(JPATH)/bin/javadoc"
-		CFLAGS=$CFLAGS" -D_BSD_SOURCE"
+		CFLAGS=$CFLAGS" -D_BSD_SOURCE -D_DEFAULT_SOURCE"
 		;;
 	esac
 fi
