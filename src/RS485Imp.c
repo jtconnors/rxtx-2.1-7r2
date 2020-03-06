@@ -59,6 +59,14 @@
 
 extern int errno;
 #include "RS485Imp.h"
+
+/*
+ * JTC:  Added this include statement so that modern linux'es compile this
+ * source correctly.  The "utsrelease.h" file referenced below is created
+ * by the configure command.
+ */
+#include "utsrelease.h"
+
 /* #define DEBUG_TIMEOUT */
 
 /*----------------------------------------------------------

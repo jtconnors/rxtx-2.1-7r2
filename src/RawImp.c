@@ -67,6 +67,14 @@
 
 extern int errno;
 #include "I2CImp.h"
+
+/*
+ * JTC:  Added this include statement so that modern linux'es compile this
+ * source correctly.  The "utsrelease.h" file referenced below is created
+ * by the configure command.
+ */
+#include "utsrelease.h"
+
 /* #define DEBUG_TIMEOUT */
 
 /*----------------------------------------------------------

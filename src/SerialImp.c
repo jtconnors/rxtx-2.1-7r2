@@ -112,6 +112,13 @@ extern int errno;
 
 #include "SerialImp.h"
 
+/*
+ * JTC:  Added this include statement so that modern linux'es compile this
+ * source correctly.  The "utsrelease.h" file referenced below is created
+ * by the configure command.
+ */
+#include "utsrelease.h"
+
 JavaVM *javaVM = NULL;
 
 
