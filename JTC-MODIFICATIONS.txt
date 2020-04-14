@@ -7,7 +7,7 @@ Initial Problems:
  i.  The RxTx code base is old, and really hasn't been touched in a long
      time.  It has no notion of any version of Java past Java 5 and will
      fail to build with any JDK with version 6 or later.
- ii. Again, do to its age, the RxTx build makes assumpotions about a
+ ii. Again, due to its age, the RxTx build makes assumpotions about a
      system defined constant called UTS_RELEASE and where it can be found.
      This was originally assumed to be found in the <linux/version.h>
      include file.  Newer versions place this in a kernel module include
